@@ -1,0 +1,12 @@
+# Terraform exclusions
+.terraform/
+*.tfstate*
+*lock*
+
+# Terragrunt exclusions
+*backend.tf
+*provider.tf
+.terragrunt-cache/
+
+# User files
+secrets/

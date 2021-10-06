@@ -3,5 +3,5 @@ include "root" {
 }
 
 terraform {
-  source = "github.com/JedenFalls/Terraform.git//examples/azurerm.storage-account?ref=azstorageaccount"
+  source = "github.com/JedenFalls/Terraform.git//examples/storage-account?ref=azstorageaccount"
 }
