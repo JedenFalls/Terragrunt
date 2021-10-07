@@ -13,12 +13,7 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  tenant_id                  = var.tenant_id
-  subscription_id            = var.subscription_id
-  client_id                  = var.terraform_client_id
-  client_secret              = var.terraform_client_secret
-  
+provider "azurerm" { 
   skip_provider_registration = true
   features {}
 }
@@ -35,17 +30,19 @@ remote_state {
 
   config = {
     key = "${path_relative_to_include()}/terraform.tfstate"
+    storage_account_name = "amrtfstatesa"
+    container_name       = "amrtfstatesa-container"
   }
 }
 
 terraform {
-  extra_arguments "common_vars" {
-    commands = get_terraform_commands_that_need_vars()
+  # extra_arguments "common_vars" {
+  #   commands = get_terraform_commands_that_need_vars()
 
-    arguments = [
-      "-var-file=../../secrets/azure_access.tfvars"
-    ]
-  }
+  #   arguments = [
+  #     "-var-file=../../secrets/azure_access.tfvars"
+  #   ]
+  # }
 
   extra_arguments "init_args" {
     commands = [
@@ -53,7 +50,7 @@ terraform {
     ]
 
     arguments = [
-      "-backend-config=../../secrets/sa_access.tfvars",
+      # "-backend-config=../../secrets/sa_access.tfvars",
       "-reconfigure"
     ]
   }
